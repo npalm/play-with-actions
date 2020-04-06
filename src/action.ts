@@ -21,7 +21,7 @@ export const action = async () => {
   //pull_request.base.head.ref
 
   const testName = core.getInput('name', { required: false });
-  const pr: any = (<any>context).pull_request;
+  const pr: any = context.payload.pull_request;
 
   //console.log(JSON.stringify(github.context.payload));
   const payload = JSON.stringify(pr, undefined, 2);
