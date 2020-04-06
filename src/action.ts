@@ -24,7 +24,7 @@ export const action = async () => {
   const pr: any = (<any>context).pull_request;
 
   //console.log(JSON.stringify(github.context.payload));
-  const payload = JSON.stringify(context, undefined, 2);
+  const payload = JSON.stringify(pr, undefined, 2);
   //console.log(`The event payload: ${payload}`);
   core.info(`
         Using parameters:
