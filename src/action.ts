@@ -24,7 +24,7 @@ export const action = async () => {
   const pr: any = context.payload.pull_request;
 
   //console.log(JSON.stringify(context.payload));
-  const payload = JSON.stringify(context.payload, undefined, 2);
+  const payload = JSON.stringify(context, undefined, 2);
   console.log(`The event payload: ${payload}`);
 
   core.info(`

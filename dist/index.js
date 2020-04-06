@@ -25312,9 +25312,8 @@ exports.action = async () => {
     const testName = core.getInput('name', { required: false });
     const pr = github_1.context.payload.pull_request;
     //console.log(JSON.stringify(context.payload));
-    const payload = JSON.stringify(github_1.context.payload, undefined, 2);
+    const payload = JSON.stringify(github_1.context, undefined, 2);
     console.log(`The event payload: ${payload}`);
-    //console.log(`The event pr: ${JSON.stringify(pr, undefined, 2)}`);
     core.info(`
         Using parameters:
         name           : ${testName}
