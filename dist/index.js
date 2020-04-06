@@ -25313,12 +25313,13 @@ exports.action = async () => {
     const pr = github_1.context.payload.pull_request;
     //console.log(JSON.stringify(context.payload));
     const payload = JSON.stringify(github_1.context.payload, undefined, 2);
-    //console.log(`The event payload: ${payload}`);
+    console.log(`The event payload: ${payload}`);
+    //console.log(`The event pr: ${JSON.stringify(pr, undefined, 2)}`);
     core.info(`
         Using parameters:
         name           : ${testName}
         pr number      : ${pr.number}
-        pr base branch : ${pr.base.ref}
+        pr base-branch : ${pr.base.ref}
     `);
 };
 
