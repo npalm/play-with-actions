@@ -1,5 +1,5 @@
 import * as core from '@actions/core';
-import github from '@actions/github';
+import { context } from '@actions/github';
 
 async function runInGroup(name: string, fun: () => Promise<void>) {
   core.startGroup(name);
@@ -22,7 +22,7 @@ export const action = async () => {
   const testName = core.getInput('name', { required: false });
 
   //console.log(JSON.stringify(github.context.payload));
-  const payload = JSON.stringify(github.context.payload, undefined, 2);
+  const payload = JSON.stringify(context.payload, undefined, 2);
   console.log(`The event payload: ${payload}`);
   core.info(`
         Using parameters:

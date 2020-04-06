@@ -25288,12 +25288,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     result["default"] = mod;
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(__webpack_require__(470));
-const github_1 = __importDefault(__webpack_require__(469));
+const github_1 = __webpack_require__(469);
 async function runInGroup(name, fun) {
     core.startGroup(name);
     try {
@@ -25313,7 +25310,7 @@ exports.action = async () => {
     //  const octokit = new github.GitHub(myToken);
     const testName = core.getInput('name', { required: false });
     //console.log(JSON.stringify(github.context.payload));
-    const payload = JSON.stringify(github_1.default.context.payload, undefined, 2);
+    const payload = JSON.stringify(github_1.context.payload, undefined, 2);
     console.log(`The event payload: ${payload}`);
     core.info(`
         Using parameters:
