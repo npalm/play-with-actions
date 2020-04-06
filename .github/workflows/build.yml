@@ -12,7 +12,6 @@ jobs:
         uses: actions/checkout@v2
       - name: My action
         uses: ./ # Uses an action in the root directory
-        id: hello
         with:
           name: 'awesome'
           myToken: ${{ secrets.GITHUB_TOKEN }}

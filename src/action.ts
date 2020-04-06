@@ -17,11 +17,11 @@ export const action = async () => {
   core.setOutput('Running action', 'Play');
 
   const myToken = core.getInput('myToken', { required: true });
-  const octokit = new github.GitHub(myToken);
+  //  const octokit = new github.GitHub(myToken);
 
   const testName = core.getInput('name', { required: false });
 
-  console.log(JSON.stringify(github.context.payload));
+  //console.log(JSON.stringify(github.context.payload));
 
   core.info(`
         Using parameters:
