@@ -1,3 +1,5 @@
+name: Play
+
 on: [push]
 
 jobs:
