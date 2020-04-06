@@ -3,7 +3,7 @@ description: 'play with actions'
 author: 'Niek'
 
 inputs:
-  testName:
+  name:
     description: name
     required: false
 
