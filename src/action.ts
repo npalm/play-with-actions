@@ -25,7 +25,7 @@ export const action = async () => {
 
   //console.log(JSON.stringify(context.payload));
   const payload = JSON.stringify(context.payload, undefined, 2);
-  //console.log(`The event payload: ${payload}`);
+  console.log(`The event payload: ${payload}`);
   core.info(`
         Using parameters:
         name           : ${testName}
