@@ -25309,7 +25309,7 @@ async function runInGroup(name, fun) {
 }
 exports.action = async () => {
     core.setOutput('Running action', 'Play');
-    const myToken = core.getInput('myToken');
+    const myToken = core.getInput('myToken', { required: true });
     const octokit = new github_1.default.GitHub(myToken);
     const testName = core.getInput('name', { required: false });
     console.log(JSON.stringify(github_1.default.context.payload));
