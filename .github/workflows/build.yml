@@ -16,4 +16,3 @@ jobs:
         uses: ./ # Uses an action in the root directory
         with:
           name: 'awesome'
-          myToken: ${{ secrets.GITHUB_TOKEN }}

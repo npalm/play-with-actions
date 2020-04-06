@@ -25306,11 +25306,10 @@ async function runInGroup(name, fun) {
 }
 exports.action = async () => {
     core.setOutput('Running action', 'Play');
-    const myToken = core.getInput('myToken', { required: true });
-    //  const octokit = new github.GitHub(myToken);
+    //pull_request.number
     const testName = core.getInput('name', { required: false });
     //console.log(JSON.stringify(github.context.payload));
-    const payload = JSON.stringify(github_1.context.payload, undefined, 2);
+    const payload = JSON.stringify(github_1.context, undefined, 2);
     console.log(`The event payload: ${payload}`);
     core.info(`
         Using parameters:
