@@ -16,3 +16,7 @@ jobs:
         uses: ./ # Uses an action in the root directory
         with:
           name: 'awesome'
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
