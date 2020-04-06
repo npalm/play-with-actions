@@ -3,9 +3,9 @@ description: 'play with actions'
 author: 'Niek'
 
 inputs:
-  name:
+  testName:
     description: name
-    required: true
+    required: false
 
 runs:
   using: 'node12'

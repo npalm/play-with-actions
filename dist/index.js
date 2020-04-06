@@ -415,9 +415,10 @@ async function runInGroup(name, fun) {
 }
 exports.action = async () => {
     core.setOutput('Running action', 'Play');
+    const testName = core.getInput('testName', { required: false });
     core.info(`
         Using parameters:
-        name       : ${name}
+        name       : ${testName}
     `);
 };
 
