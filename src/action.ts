@@ -1,4 +1,5 @@
 import * as core from '@actions/core';
+import github from '@actions/github';
 
 async function runInGroup(name: string, fun: () => Promise<void>) {
   core.startGroup(name);
@@ -15,7 +16,9 @@ async function runInGroup(name: string, fun: () => Promise<void>) {
 export const action = async () => {
   core.setOutput('Running action', 'Play');
 
-  const testName = core.getInput('testName', { required: false });
+  const testName = core.getInput('name', { required: false });
+
+  console.log(JSON.stringify(github.context.payload));
 
   core.info(`
         Using parameters:
