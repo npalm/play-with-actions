@@ -25312,20 +25312,20 @@ exports.action = async () => {
     const testName = core.getInput('name', { required: false });
     const pr = github_1.context.payload.pull_request;
     //console.log(JSON.stringify(context.payload));
-    const payload = JSON.stringify(github_1.context, undefined, 2);
-    console.log(`The event payload: ${payload}`);
+    //const payload = JSON.stringify(context, undefined, 2);
+    //console.log(`The event payload: ${payload}`);
     if (pr) {
         console.log('----PR----');
         console.log(pr.number);
         console.log(pr.base.ref);
-        console.log(pr.base.head_ref);
+        console.log(pr.head.ref);
     }
-    core.info(`
-        Using parameters:
-        name           : ${testName}
-        pr number      : ${pr.number}
-        pr base-branch : ${pr.base.ref}
-    `);
+    // core.info(`
+    //       Using parameters:
+    //       name           : ${testName}
+    //       pr number      : ${pr.number}
+    //       pr base-branch : ${pr.base.ref}
+    //   `);
 };
 
 
