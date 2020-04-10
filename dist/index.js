@@ -25314,6 +25314,12 @@ exports.action = async () => {
     //console.log(JSON.stringify(context.payload));
     const payload = JSON.stringify(github_1.context, undefined, 2);
     console.log(`The event payload: ${payload}`);
+    if (pr) {
+        console.log('----PR----');
+        console.log(pr.number);
+        console.log(pr.base.ref);
+        console.log(pr.base.head_ref);
+    }
     core.info(`
         Using parameters:
         name           : ${testName}
