@@ -31,13 +31,13 @@ export const action = async () => {
     console.log('----PR----');
     console.log(pr.number);
     console.log(pr.base.ref);
-    console.log(pr.base.head_ref);
+    console.log(pr.head.ref);
   }
 
-  core.info(`
-        Using parameters:
-        name           : ${testName}
-        pr number      : ${pr.number}
-        pr base-branch : ${pr.base.ref}
-    `);
+  // core.info(`
+  //       Using parameters:
+  //       name           : ${testName}
+  //       pr number      : ${pr.number}
+  //       pr base-branch : ${pr.base.ref}
+  //   `);
 };
