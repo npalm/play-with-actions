@@ -25306,9 +25306,6 @@ async function runInGroup(name, fun) {
 }
 exports.action = async () => {
     core.setOutput('Running action', 'Play');
-    //pull_request.number
-    //pull_request.base.ref
-    //pull_request.base.head.ref
     const testName = core.getInput('name', { required: false });
     const pr = github_1.context.payload.pull_request;
     //console.log(JSON.stringify(context.payload));
