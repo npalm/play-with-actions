@@ -7,20 +7,17 @@ on:
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
+    container: node:12
     name: A job to say hello
     steps:
       # To use this repository's private action, you must check out the repository
       - name: Checkout
         uses: actions/checkout@v2
-      - name: My action
-        uses: ./ # Uses an action in the root directory
-        with:
-          name: 'awesome'
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - name: Dump job context
-        env:
-          JOB_CONTEXT: ${{ toJson(job) }}
-        run: echo "$JOB_CONTEXT"
+      - name: My action
+        uses: ./ # Uses an action in the root directory
+        with:
+          name: "awesome"
