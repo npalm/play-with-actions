@@ -20,6 +20,7 @@ jobs:
           git status
           git commit -m "Add changes" -a
           repo="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
+          echo $repo
           git push "${repo}" HEAD:${{ github.ref }}
       - name: My action
         uses: ./ # Uses an action in the root directory
