@@ -25310,7 +25310,6 @@ exports.action = async () => {
     const pr = github_1.context.payload.pull_request;
     //console.log(JSON.stringify(context.payload));
     //const payload = JSON.stringify(context, undefined, 2);
-    //console.log(`The event payload: ${payload}`);
     if (pr) {
         console.log('----PR----');
         console.log(pr.number);
