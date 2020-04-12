@@ -45,4 +45,5 @@ jobs:
           git status
           repo="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
           echo git push "${repo}" HEAD:${{ github.head_ref }}
+          git pull "${repo}" HEAD:${{ github.head_ref }}
           git push "${repo}" HEAD:${{ github.head_ref }}
