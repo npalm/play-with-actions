@@ -43,6 +43,8 @@ jobs:
           git remote add github "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
           git pull github ${GITHUB_REF} --ff-only
           git status
+          git add --all .
+          git status
           git commit -m "Add changes" -a
           git status
           git push github HEAD:${{ github.head_ref }}
