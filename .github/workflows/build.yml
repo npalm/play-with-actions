@@ -30,6 +30,8 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Download
         uses: actions/download-artifact@v1
         with:
