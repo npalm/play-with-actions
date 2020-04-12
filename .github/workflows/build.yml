@@ -47,4 +47,5 @@ jobs:
           git status
           git commit -m "Add changes" -a
           git status
+          git pull github ${GITHUB_REF} --ff-only
           git push github HEAD:${{ github.head_ref }}
