@@ -23,7 +23,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: dist
-          path: dist/*
+          path: dist/index.js
 
   update_dist:
     needs: hello_world_job

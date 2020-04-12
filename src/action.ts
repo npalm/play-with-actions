@@ -21,7 +21,6 @@ export const action = async () => {
 
   //console.log(JSON.stringify(context.payload));
   //const payload = JSON.stringify(context, undefined, 2);
-  //console.log(`The event payload: ${payload}`);
 
   if (pr) {
     console.log('----PR----');
