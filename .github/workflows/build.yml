@@ -40,10 +40,9 @@ jobs:
           ls -la
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git remote add github "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
+          git pull github ${GITHUB_REF} --ff-only
           git status
           git commit -m "Add changes" -a
           git status
-          repo="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
-          echo git push "${repo}" HEAD:${{ github.head_ref }}
-          git pull "${repo}" HEAD:${{ github.head_ref }}
-          git push "${repo}" HEAD:${{ github.head_ref }}
+          git push github HEAD:${{ github.head_ref }}
