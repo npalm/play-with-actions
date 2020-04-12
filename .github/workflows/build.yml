@@ -25,12 +25,11 @@ jobs:
           name: dist
           path: dist/*
 
-jobs:
   update_dist:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     steps:
-      - name: Download 
+      - name: Download
         uses: actions/download-artifact@v1
         with:
           name: dist
@@ -41,4 +40,3 @@ jobs:
           git commit -m "Add changes" -a
           repo="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
           git push "${repo}" HEAD:${{ github.ref }}
-    
