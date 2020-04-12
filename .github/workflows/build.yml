@@ -29,6 +29,7 @@ jobs:
   update_dist:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
+    steps:
       - name: Download 
         uses: actions/download-artifact@v1
         with:
