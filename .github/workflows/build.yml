@@ -7,23 +7,37 @@ on:
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
-    # container: node:12
+    container: node:12
     name: A job to say hello
     steps:
       # To use this repository's private action, you must check out the repository
       - name: Checkout
         uses: actions/checkout@v2
       - run: yarn install && yarn run build
-      - run: ls -la
+      # - name: My action
+      #   uses: ./ # Uses an action in the root directory
+      #   with:
+      #     name: "awesome"
+      - name: Upload math result for job 1
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v1
+        with:
+          name: dist
+          path: dist/*
+
+jobs:
+  update_dist:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+      - name: Download 
+        uses: actions/download-artifact@v1
+        with:
+          name: dist
       - run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git status
           git commit -m "Add changes" -a
           repo="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
-          echo $repo
           git push "${repo}" HEAD:${{ github.ref }}
-      - name: My action
-        uses: ./ # Uses an action in the root directory
-        with:
-          name: "awesome"
+    
