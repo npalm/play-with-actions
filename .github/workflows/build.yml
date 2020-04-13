@@ -69,10 +69,11 @@ jobs:
           git status
           git commit -m "Add changes" -a
           git status
-
           # git push github $GITHUB_HEAD_REF
           # git push github ${{ github.head.ref }}
           # git push "${repo}" HEAD:${{ github.head.ref }}
-          changes=$(git status --porcelain --untracked-files=no | wc -l)
+          git status -s --untracked-files=no 
+          git status --untracked-files=no
+          changes=$(git status -s --untracked-files=no | wc -l)
           echo $changes
           if [ ${changes} -gt 0 ] ; then git push "${repo}" HEAD:$GITHUB_HEAD_REF; fi
