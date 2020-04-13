@@ -16,16 +16,23 @@ async function runInGroup(name: string, fun: () => Promise<void>) {
 export const action = async () => {
   core.setOutput('Running action', 'Play');
 
-  const myToken = core.getInput('myToken', { required: true });
-  //  const octokit = new github.GitHub(myToken);
-
   const testName = core.getInput('name', { required: false });
+  const pr: any = context.payload.pull_request;
 
-  //console.log(JSON.stringify(github.context.payload));
-  const payload = JSON.stringify(context.payload, undefined, 2);
-  console.log(`The event payload: ${payload}`);
-  core.info(`
-        Using parameters:
-        name       : ${testName}
-    `);
+  //const payload = JSON.stringify(context, undefined, 2);
+
+  if (pr) {
+    console.log('----PR----');
+    console.log(pr.number);
+    console.log(pr.base.ref);
+    console.log(pr.head.ref);
+  }
+
+  // bla
+  // core.info(`
+  //       Using parameters:
+  //       name           : ${testName}
+  //       pr number      : ${pr.number}
+  //       pr base-branch : ${pr.base.ref}
+  //   `);
 };

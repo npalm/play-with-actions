@@ -1,17 +1,77 @@
 name: Play
 
-on: [push]
+on:
+  # push:
+  pull_request:
 
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
+    container: node:12
     name: A job to say hello
     steps:
       # To use this repository's private action, you must check out the repository
       - name: Checkout
         uses: actions/checkout@v2
-      - name: My action
-        uses: ./ # Uses an action in the root directory
+      - run: yarn install && yarn run build
+      # - name: My action
+      #   uses: ./ # Uses an action in the root directory
+      #   with:
+      #     name: "awesome"
+      - name: Upload math result for job 1
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v1
         with:
-          name: 'awesome'
-          myToken: ${{ secrets.GITHUB_TOKEN }}
+          name: dist
+          path: dist/index.js
+
+  update_dist:
+    needs: hello_world_job
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Download
+        uses: actions/download-artifact@v1
+        with:
+          name: dist
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - name: Dump job context
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
+        run: echo "$JOB_CONTEXT"
+      - name: Dump steps context
+        env:
+          STEPS_CONTEXT: ${{ toJson(steps) }}
+        run: echo "$STEPS_CONTEXT"
+      - name: Dump runner context
+        env:
+          RUNNER_CONTEXT: ${{ toJson(runner) }}
+        run: echo "$RUNNER_CONTEXT"
+      - name: Dump Env context
+        run: env
+
+      - run: |
+          ls -la
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          # git remote add github "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
+          repo="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
+          #git fetch --depth 1 $repo $GITHUB_SHA
+          echo $repo
+          git status
+          git add --all .
+          git status
+          git commit -m "Add changes" -a
+          git status
+
+          # git push github $GITHUB_HEAD_REF
+          # git push github ${{ github.head.ref }}
+          # git push "${repo}" HEAD:${{ github.head.ref }}
+          git push "${repo}" HEAD:$GITHUB_HEAD_REF

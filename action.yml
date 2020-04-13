@@ -6,8 +6,6 @@ inputs:
   name:
     description: name
     required: false
-  myToken:
-    required: true
 
 runs:
   using: 'node12'
