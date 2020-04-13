@@ -28,6 +28,7 @@ export const action = async () => {
     console.log(pr.head.ref);
   }
 
+  // bla
   // core.info(`
   //       Using parameters:
   //       name           : ${testName}
