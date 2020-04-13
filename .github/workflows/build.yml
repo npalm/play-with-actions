@@ -70,11 +70,11 @@ jobs:
           echo 1
           changes=$(git status -s --porcelain --untracked-files=no | wc -l)
           echo $changes
-          echo 2
+          echo 2 --
           [ $changes -gt 0 ] && echo changes
           [ $changes -lt 0 ] && echo no changes
           [ $changes -gt 0 ] && git commit -m "Add changes" -a
-          echo 3
+          echo 3 -- 
           git status
           echo hi
           [ $changes -gt 0 ] && git push "${repo}" HEAD:$GITHUB_HEAD_REF
