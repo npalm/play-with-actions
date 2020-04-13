@@ -25308,7 +25308,6 @@ exports.action = async () => {
     core.setOutput('Running action', 'Play');
     const testName = core.getInput('name', { required: false });
     const pr = github_1.context.payload.pull_request;
-    //console.log(JSON.stringify(context.payload));
     //const payload = JSON.stringify(context, undefined, 2);
     if (pr) {
         console.log('----PR----');

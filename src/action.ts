@@ -19,7 +19,6 @@ export const action = async () => {
   const testName = core.getInput('name', { required: false });
   const pr: any = context.payload.pull_request;
 
-  //console.log(JSON.stringify(context.payload));
   //const payload = JSON.stringify(context, undefined, 2);
 
   if (pr) {
