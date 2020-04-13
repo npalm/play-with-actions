@@ -73,4 +73,5 @@ jobs:
           # git push github $GITHUB_HEAD_REF
           # git push github ${{ github.head.ref }}
           # git push "${repo}" HEAD:${{ github.head.ref }}
-          git push "${repo}" HEAD:$GITHUB_HEAD_REF
+          changes=$(git status --porcelain --untracked-files=no | wc -l)
+          [ changes -gt 0 ] && git push "${repo}" HEAD:$GITHUB_HEAD_REF
