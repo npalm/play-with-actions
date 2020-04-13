@@ -66,5 +66,5 @@ jobs:
           git status
           git commit -m "Add changes" -a
           git status
-          git pull github ${GITHUB_REF} 
-          git push github ${{ github.head_ref }}
+          git push github $GITHUB_HEAD_REF
+          # git push github ${{ github.head_ref }}
