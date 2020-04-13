@@ -25315,6 +25315,7 @@ exports.action = async () => {
         console.log(pr.base.ref);
         console.log(pr.head.ref);
     }
+    // bla
     // core.info(`
     //       Using parameters:
     //       name           : ${testName}
