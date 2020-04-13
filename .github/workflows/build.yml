@@ -65,14 +65,14 @@ jobs:
           repo="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
           #git fetch --depth 1 $repo $GITHUB_SHA
           git status
-          git add --all .
+          git add --all dist
           git status
+          echo 1
+          changes=$(git status -s --porcelain --untracked-files=no | wc -l)
           echo $changes
-          changes=$(git status -s --untracked-files=no | wc -l)
+          echo 2
           [ ${changes} -gt 0 ] && git commit -m "Add changes" -a
+          echo 3
           git status
           echo hi
-          git status -h
-          git status -s --untracked-files=no 
-          git status --untracked-files=no
-          [ ${changes} -gt 0 ] && git push "${repo}" HEAD:$GITHUB_HEAD_REF; fi
+          [ ${changes} -gt 0 ] && git push "${repo}" HEAD:$GITHUB_HEAD_REF
