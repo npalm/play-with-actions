@@ -60,6 +60,9 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           # git remote add github "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
+          repo="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth 1 $repo $GITHUB_SHA
+          echo $repo
           git status
           git add --all .
           git status
@@ -67,7 +70,5 @@ jobs:
           git status
           # git push github $GITHUB_HEAD_REF
           # git push github ${{ github.head.ref }}
-          repo="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
-          echo $repo
           # git push "${repo}" HEAD:${{ github.head.ref }}
           git push "${repo}" HEAD:$GITHUB_HEAD_REF
