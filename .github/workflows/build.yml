@@ -57,24 +57,20 @@ jobs:
       - name: Dump Env context
         run: env
 
-      - run: |
-          ls -la
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          # git remote add github "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
-          repo="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
-          #git fetch --depth 1 $repo $GITHUB_SHA
-          git status
-          git add --all dist
-          git status
-          echo 1
-          changes=$(git status -s --porcelain --untracked-files=no | wc -l)
-          echo $changes
-          echo 2 --
-          [ $changes -gt 0 ] && echo changes
-          [ $changes -lt 0 ] && echo no changes
-          [ $changes -gt 0 ] && git commit -m "Add changes" -a
-          echo 3 -- 
-          git status
-          echo hi
-          # [ $changes -gt 0 ] && git push "${repo}" HEAD:$GITHUB_HEAD_REF
+      - run: ./update_dist.sh ${{ secrets.GITHUB_TOKEN }}
+      # - run: |
+      #     git config --local user.email "action@github.com"
+      #     git config --local user.name "GitHub Action"
+      #     repo="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
+      #     changes=$(git status -s --porcelain --untracked-files=no | wc -l)
+      #     echo $changes
+      #     git add --all dist
+      #     echo 1
+      #     echo 2 --
+      #     [ $changes -gt 0 ] && echo changes
+      #     [ $changes -lt 0 ] && echo no changes
+      #     [ $changes -gt 0 ] && git commit -m "Add changes" -a
+      #     echo 3 --
+      #     git status
+      #     echo hi
+      #     # [ $changes -gt 0 ] && git push "${repo}" HEAD:$GITHUB_HEAD_REF
