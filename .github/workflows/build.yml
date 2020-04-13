@@ -57,7 +57,7 @@ jobs:
       - name: Dump Env context
         run: env
       - run: ls -la
-      - run: update_dist.sh ${{ secrets.GITHUB_TOKEN }}
+      - run: ./update_dist.sh ${{ secrets.GITHUB_TOKEN }}
       # - run: |
       #     git config --local user.email "action@github.com"
       #     git config --local user.name "GitHub Action"
