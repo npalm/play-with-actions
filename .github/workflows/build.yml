@@ -8,9 +8,9 @@ jobs:
   play:
     runs-on: ubuntu-latest
 
-    services:
-      docker:
-        image: docker:19.03.5-dind
+    # services:
+    #   docker:
+    #     image: docker:19.03.5-dind
 
     steps:
       - name: Checkout
