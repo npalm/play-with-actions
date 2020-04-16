@@ -7,7 +7,7 @@ jobs:
   play:
     runs-on: ubuntu-latest
     steps:
-      - uses: philips-labs/sonar-scanner-action@26ba11cbe6061fd36800368a8a760e33309ab5e8
+      - uses: philips-labs/sonar-scanner-action@19d922efdcd5fad61e1df0ff31ca5d90baba4fa6
         id: sonar
         with:
           token: 1234
@@ -17,4 +17,4 @@ jobs:
           enablePullRequestDecoration: true
           onlyConfig: true
       - name: sonar config
-        run: echo "Config ${{ steps.sonar.outputs.sonarParamters }}"
+        run: echo "Config ${{ steps.sonar.outputs.sonarParameters }}"
