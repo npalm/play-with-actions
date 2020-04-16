@@ -20,6 +20,7 @@ export const action = async () => {
   const pr: any = context.payload.pull_request;
 
   console.log(JSON.stringify(context.ref, undefined, 2));
+  console.log(JSON.stringify(context.payload, undefined, 2));
 
   //const payload = JSON.stringify(context, undefined, 2);
 

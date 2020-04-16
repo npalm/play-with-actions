@@ -25309,6 +25309,7 @@ exports.action = async () => {
     const testName = core.getInput('name', { required: false });
     const pr = github_1.context.payload.pull_request;
     console.log(JSON.stringify(github_1.context.ref, undefined, 2));
+    console.log(JSON.stringify(github_1.context.payload, undefined, 2));
     //const payload = JSON.stringify(context, undefined, 2);
     if (pr) {
         console.log('----PR----');
