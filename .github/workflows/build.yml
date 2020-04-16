@@ -6,7 +6,6 @@ on:
 jobs:
   play:
     runs-on: ubuntu-latest
-    runs-on: ubuntu-latest
     steps:
       - uses: philips-labs/sonar-scanner-action@55ec6690c3640998a34ea016eca4389ee45ac0a6
         id: sonar
