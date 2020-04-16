@@ -25304,18 +25304,33 @@ async function runInGroup(name, fun) {
         core.endGroup();
     }
 }
+function getBranchOrTagName(githubRef) {
+    const githubRefParts = githubRef.split('/');
+    return githubRefParts[githubRefParts.length - 1];
+}
 exports.action = async () => {
     core.setOutput('Running action', 'Play');
-    const myToken = core.getInput('myToken', { required: true });
-    //  const octokit = new github.GitHub(myToken);
     const testName = core.getInput('name', { required: false });
-    //console.log(JSON.stringify(github.context.payload));
-    const payload = JSON.stringify(github_1.context.payload, undefined, 2);
-    console.log(`The event payload: ${payload}`);
-    core.info(`
-        Using parameters:
-        name       : ${testName}
-    `);
+    const pr = github_1.context.payload.pull_request;
+    if (!pr) {
+        console.log('Branch name: ' + getBranchOrTagName(github_1.context.ref));
+    }
+    console.log(JSON.stringify(github_1.context.ref, undefined, 2));
+    console.log(JSON.stringify(github_1.context.payload, undefined, 2));
+    //const payload = JSON.stringify(context, undefined, 2);
+    if (pr) {
+        console.log('----PR----');
+        console.log(pr.number);
+        console.log(pr.base.ref);
+        console.log(pr.head.ref);
+    }
+    // bla
+    // core.info(`
+    //       Using parameters:
+    //       name           : ${testName}
+    //       pr number      : ${pr.number}
+    //       pr base-branch : ${pr.base.ref}
+    //   `);
 };
 
 
