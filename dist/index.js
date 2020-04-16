@@ -25304,10 +25304,17 @@ async function runInGroup(name, fun) {
         core.endGroup();
     }
 }
+function getBranchOrTagName(githubRef) {
+    const githubRefParts = githubRef.split('/');
+    return githubRefParts[githubRefParts.length - 1];
+}
 exports.action = async () => {
     core.setOutput('Running action', 'Play');
     const testName = core.getInput('name', { required: false });
     const pr = github_1.context.payload.pull_request;
+    if (!pr) {
+        console.log('Branch name: ' + getBranchOrTagName(github_1.context.ref));
+    }
     console.log(JSON.stringify(github_1.context.ref, undefined, 2));
     console.log(JSON.stringify(github_1.context.payload, undefined, 2));
     //const payload = JSON.stringify(context, undefined, 2);

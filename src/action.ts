@@ -13,11 +13,20 @@ async function runInGroup(name: string, fun: () => Promise<void>) {
   }
 }
 
+function getBranchOrTagName(githubRef: string): string {
+  const githubRefParts = githubRef.split('/');
+  return githubRefParts[githubRefParts.length - 1];
+}
+
 export const action = async () => {
   core.setOutput('Running action', 'Play');
 
   const testName = core.getInput('name', { required: false });
   const pr: any = context.payload.pull_request;
+
+  if (!pr) {
+    console.log('Branch name: ' + getBranchOrTagName(context.ref));
+  }
 
   console.log(JSON.stringify(context.ref, undefined, 2));
   console.log(JSON.stringify(context.payload, undefined, 2));
