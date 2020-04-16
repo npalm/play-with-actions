@@ -37,8 +37,10 @@ jobs:
         run: env
       - run: docker build -t test .
       - uses: docker://philipssoftware/openjdk:11.0.5-jdk-zulu-docker
-        env:
-          DB_HOST: postgres
         with:
           entrypoint: bash
-          args: -c "docker images"
+          args: -c "docker build -t test2"
+      - uses: docker://philipssoftware/openjdk:11.0.5-jdk-zulu-docker
+        with:
+          entrypoint: bash
+          args: -c "docker images | grep test"
