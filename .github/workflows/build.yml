@@ -43,4 +43,4 @@ jobs:
       - uses: docker://philipssoftware/openjdk:11.0.5-jdk-zulu-docker
         with:
           entrypoint: bash
-          args: -c "docker images | grep test"
+          args: -c "docker images "
