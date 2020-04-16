@@ -5,39 +5,19 @@ on:
   pull_request:
 
 jobs:
-  hello_world_job:
-    runs-on: ubuntu-latest
-    container: node:12
-    name: A job to say hello
-    steps:
-      # To use this repository's private action, you must check out the repository
-      - name: Checkout
-        uses: actions/checkout@v2
-      - run: yarn install && yarn run build
-      - name: My action
-        uses: ./ # Uses an action in the root directory
-        with:
-          name: "awesome"
-      - name: Upload math result for job 1
-        if: github.event_name == 'pull_request'
-        uses: actions/upload-artifact@v1
-        with:
-          name: dist
-          path: dist/index.js
-
-  update_dist:
+  play:
     needs: hello_world_job
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+
+    services:
+      docker:
+        image: docker:19.03.5-dind
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Download
-        uses: actions/download-artifact@v1
-        with:
-          name: dist
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
@@ -56,21 +36,10 @@ jobs:
         run: echo "$RUNNER_CONTEXT"
       - name: Dump Env context
         run: env
-      - run: ls -la
-      - run: ./update_dist.sh ${{ secrets.GITHUB_TOKEN }}
-      # - run: |
-      #     git config --local user.email "action@github.com"
-      #     git config --local user.name "GitHub Action"
-      #     repo="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
-      #     changes=$(git status -s --porcelain --untracked-files=no | wc -l)
-      #     echo $changes
-      #     git add --all dist
-      #     echo 1
-      #     echo 2 --
-      #     [ $changes -gt 0 ] && echo changes
-      #     [ $changes -lt 0 ] && echo no changes
-      #     [ $changes -gt 0 ] && git commit -m "Add changes" -a
-      #     echo 3 --
-      #     git status
-      #     echo hi
-      #     # [ $changes -gt 0 ] && git push "${repo}" HEAD:$GITHUB_HEAD_REF
+      - run: docker build -t test .
+      - uses: docker://philipssoftware/openjdk:11.0.5-jdk-zulu-docker
+        env:
+          DB_HOST: postgres
+        with:
+          entrypoint: bash
+          args: -c "docker images"
