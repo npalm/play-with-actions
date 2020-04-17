@@ -7,8 +7,6 @@ on:
 jobs:
   play:
     runs-on: ubuntu-latest
-    env:
-      ACTIONS_RUNNER_DEBUG: true
 
     services:
       docker:
@@ -26,9 +24,9 @@ jobs:
       - run: docker version && docker build -t test .
       - uses: docker://docker:latest
         with:
-          entrypoint: bash
+          entrypoint: sh
           args: -c "docker version && docker build -t test2 ."
       - uses: docker://docker:latest
         with:
-          entrypoint: bash
+          entrypoint: sh
           args: -c "docker images && docker ps"
