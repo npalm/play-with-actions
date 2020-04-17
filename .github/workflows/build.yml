@@ -13,6 +13,8 @@ jobs:
         image: docker:19.03.5-dind
         ports:
           - 2375:2375
+        volumes:
+          - certs:/certs
 
     steps:
       - name: Checkout
@@ -30,3 +32,29 @@ jobs:
         with:
           entrypoint: sh
           args: -c "docker images && docker ps"
+
+
+jobs:
+  play2:
+    runs-on: ubuntu-latest
+    container:
+      image: docker:latest
+      volumes: certs:/certs
+      
+
+    services:
+      docker:
+        image: docker:19.03.5-dind
+        ports:
+          - 2375:2375
+        volumes:
+          - certs:/certs
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Dump Env context
+        run: env
+      - run: docker version && docker build -t test .
