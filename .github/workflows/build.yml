@@ -11,6 +11,8 @@ jobs:
     services:
       docker:
         image: docker:19.03.5-dind
+        ports:
+          - 2375:2375
 
     steps:
       - name: Checkout
