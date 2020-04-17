@@ -33,14 +33,11 @@ jobs:
           entrypoint: sh
           args: -c "docker images && docker ps"
 
-
-jobs:
   play2:
     runs-on: ubuntu-latest
     container:
       image: docker:latest
       volumes: certs:/certs
-      
 
     services:
       docker:
