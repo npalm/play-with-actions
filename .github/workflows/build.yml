@@ -37,7 +37,8 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: docker:latest
-      volumes: certs:/certs
+      volumes:
+        - certs:/certs
 
     services:
       docker:
