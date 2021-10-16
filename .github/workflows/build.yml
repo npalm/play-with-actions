@@ -8,6 +8,9 @@ jobs:
     name: A job to say hello
     steps:
       # To use this repository's private action, you must check out the repository
+      - run: whoami
+      - run: pwd
+      - run: ls -la 
       - name: Checkout
         uses: actions/checkout@v2
       - name: My action
